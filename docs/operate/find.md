@@ -24,7 +24,7 @@ db.<collection_name>.find({})
 
 ```
 # 查询所有数据
-db.user_log.find({})
+> db.user_log.find({})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "MinGRn", "age" : 18, "email" : "MinGRn97@gmail.com" }
@@ -44,7 +44,7 @@ db.user_log.find({})
 - 查询名称（`name`）叫 `张三` 的用户：
 
 ```
-db.user_log.find({name: "张三"})
+> db.user_log.find({name: "张三"})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三", "username" : "zhanssan" }
@@ -62,7 +62,7 @@ select * from user_log where name = '张三';
 - 查询名称（`name`）包含 `张三` 的用户，即模糊查询：
 
 ```
-db.user_log.find({name: /张三/})
+> db.user_log.find({name: /张三/})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三", "username" : "zhanssan" }
@@ -81,7 +81,7 @@ select * from user_log where name like '%张三%';
 - 查询名称（`name`）以 `张` 开头的用户
 
 ```
-db.user_log.find({name: /^张三/})
+> db.user_log.find({name: /^张三/})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三", "username" : "zhanssan" }
@@ -100,7 +100,7 @@ select * from user_log where name like '%张';
 - 查询名称（`name`）以 `三` 结尾的用户
 
 ```
-db.user_log.find({name: /三$/})
+> db.user_log.find({name: /三$/})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三", "username" : "zhanssan" }
@@ -129,7 +129,7 @@ select * from user_log where name like '三%';
 
 ## 查询年龄大于 18 的用户
 ```
-db.user_log.find({age: {$gt: 18}})
+> db.user_log.find({age: {$gt: 18}})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三1", "username" : "zhanssan", "age" : 20 }
@@ -146,7 +146,7 @@ select * from user_log where age > 18;
 ## 查询年龄大于 18 且小于 22 的用户
 
 ```
-db.user_log.find({age: {$gt: 18, $lt: 22}})
+> db.user_log.find({age: {$gt: 18, $lt: 22}})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三1", "username" : "zhanssan", "age" : 20 }
@@ -169,7 +169,7 @@ db.<collection_name>.find({$or: []})
 - 查询年龄为 20 和 20 的用户：
 
 ```
-db.user_log.find({$or: [{age: 20}, {age: 22}]})
+> db.user_log.find({$or: [{age: 20}, {age: 22}]})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三1", "username" : "zhanssan", "age" : 20 }
@@ -187,7 +187,7 @@ select * from user_log where age = 18 or age = 22;
 - 查询年龄（`age`）大于 18 且名称（`name`）以 `2` 结尾的用户：
 
 ```
-db.user_log.find({age: {$gt: 18}, name: /2$/})
+> db.user_log.find({age: {$gt: 18}, name: /2$/})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三2", "username" : "zhanssan", "age" : 22 }
@@ -228,7 +228,7 @@ db.<collection_name>.find({query}, {field})
 这里以名称（`name`）字段为例
 
 ```
-db.user_log.find({},{name: 1})
+> db.user_log.find({},{name: 1})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "MinGRn" }
@@ -252,7 +252,7 @@ select name from user_log;
 这里以名称（`name`）字段为例
 
 ```
-db.user_log.find({}, {name: 0})
+> db.user_log.find({}, {name: 0})
 
 # 查询结果
 { "_id" : ObjectId("..."), "age" : 18, "email" : "MinGRn97@gmail.com" }
@@ -286,7 +286,7 @@ db.<collection_name>.find({}).sort({})
 ## 按年龄降序
 
 ```
-db.user_log.find({}).sort({age: -1})
+> db.user_log.find({}).sort({age: -1})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三2", "username" : "zhanssan", "age" : 22 }
@@ -308,7 +308,7 @@ select * from user_log order by age desc;
 ## 按年龄升序
 
 ```
-db.user_log.find({}).sort({age: 1})
+> db.user_log.find({}).sort({age: 1})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三", "username" : "zhanssan" }
@@ -339,7 +339,7 @@ db.<collection_name>.find({}).limit(N).skip(Y)
 我们先按照年龄降序查询全部数据：
 
 ```
-db.user_log.find({}).sort({age: -1})
+> db.user_log.find({}).sort({age: -1})
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三2", "username" : "zhanssan", "age" : 22 }
@@ -357,7 +357,7 @@ db.user_log.find({}).sort({age: -1})
 ## 按年龄降序查询前3条数据
 
 ```
-db.user_log.find({}).sort({age: -1}).limit(3)
+> db.user_log.find({}).sort({age: -1}).limit(3)
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三2", "username" : "zhanssan", "age" : 22 }
@@ -374,7 +374,7 @@ select * from user_log order by age desc limit 3;
 - 按年龄降序查询从第三条开始往后查询3条数据
 
 ```
-db.user_log.find({}).sort({age: -1}).limit(3).skip(3)
+> db.user_log.find({}).sort({age: -1}).limit(3).skip(3)
 
 # 查询结果
 { "_id" : ObjectId("..."), "name" : "张三", "username" : "zhanssan" }
@@ -393,7 +393,7 @@ select * from user_log order by age desc limit 3, 3;
 `distinct` 指令同 `MySQL`，不同的是，只返回具体列的字段，如下所示：
 
 ```
-db.user_log.distinct("name")
+> db.user_log.distinct("name")
 
 # 查询结果
 [ "MinGRn", "张三", "王二", "李四", "张三1", "张三2" ]
