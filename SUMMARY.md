@@ -6,8 +6,8 @@
 
 ### 初识篇
 
-* [数据库操作](docs/operate/dbs.md)
-* [集合操作](docs/operate/collections.md)
+* [数据库管理](docs/operate/dbs.md)
+* [集合管理](docs/operate/collections.md)
 * [查询操作](docs/operate/find.md)
 * [新增操作](docs/operate/insert.md)
 * [修改操作](docs/operate/update.md)
