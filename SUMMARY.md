@@ -11,6 +11,6 @@
 * [查询操作](docs/operate/find.md)
 * [新增操作](docs/operate/insert.md)
 * [修改操作](docs/operate/update.md)
-* [删除操作](docs/operate/remove.md)
+* [删除操作](docs/operate/delete.md)
 
 ### 进阶篇
