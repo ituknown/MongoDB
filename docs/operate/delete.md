@@ -83,3 +83,64 @@ db.<collection_name>.deleteMany({})
 { "_id" : ObjectId("5d3000213a71adf05eccea09"), "name" : "zhangshilin" }
 { "_id" : ObjectId("5d3069fc6ca9d4da1764b9a9"), "name" : "linda", "nationality" : "English", "sex" : "girl" }
 ```
+
+# 扩展
+
+集合数据删除除了 `delete` 命令之外还有如下命令：
+
+```
+db.<collection_name>.remove({}, <juestOne: boolean>)
+```
+
+该命令与 `delete` 类似，第一个条件接受的是条件，第二次参数表示是否全部删除，默认为 `true`。
+
+现在来演示一下：
+
+```
+db.user_log.remove({}, true)
+```
+
+```
+# 查看集合数据
+> db.user_log.find();
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9ab"), "name" : "MinGRn", "username" : "zhanssan" }
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9ac"), "name" : "MinGRn", "username" : "zhanssan" }
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9ad"), "name" : "MinGRn", "username" : "zhanssan", "age" : 20 }
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9ae"), "name" : "MinGRn", "username" : "zhanssan", "age" : 22 }
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9af"), "name" : "zhangshilin" }
+{ "_id" : ObjectId("5d31d5e56ca9d4da1764b9b0"), "name" : "linda", "nationality" : "English", "sex" : "girl" }
+
+# 删除一条数据
+> db.user_log.remove({}, true);
+WriteResult({ "nRemoved" : 1 })
+
+# 再次查看集合数据
+> db.user_log.find();
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9ac"), "name" : "MinGRn", "username" : "zhanssan" }
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9ad"), "name" : "MinGRn", "username" : "zhanssan", "age" : 20 }
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9ae"), "name" : "MinGRn", "username" : "zhanssan", "age" : 22 }
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9af"), "name" : "zhangshilin" }
+{ "_id" : ObjectId("5d31d5e56ca9d4da1764b9b0"), "name" : "linda", "nationality" : "English", "sex" : "girl" }
+```
+
+这就删除了一条数据，现在来演示一下条件批量删除。
+
+```
+> db.user_log.remove({name: /MinGRn/});
+WriteResult({ "nRemoved" : 3 })
+
+> db.user_log.find();
+{ "_id" : ObjectId("5d31d5e46ca9d4da1764b9af"), "name" : "zhangshilin" }
+{ "_id" : ObjectId("5d31d5e56ca9d4da1764b9b0"), "name" : "linda", "nationality" : "English", "sex" : "girl" }
+```
+
+最后不执行条件，直接执行命令：
+
+```
+> db.user_log.remove({});
+WriteResult({ "nRemoved" : 2 })
+```
+
+所以，`remove` 命令相比较于 `delete` 命令更加暴力，如果不执行任何参数将会将集合中的数据进行全部删除。
+
+所以，慎用！
