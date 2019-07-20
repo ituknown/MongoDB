@@ -3,6 +3,7 @@
 * [MongoDB 简介](README.md)
 * [MongoDB 安装](docs/readme/install.md)
   - [Mac 下安装](docs/readme/install-mac.md)
+  - [Mac 下安装](docs/readme/install-win.md)
 * [自定义配置文件](docs/readme/config.md)
 
 ### 初识篇
