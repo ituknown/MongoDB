@@ -406,3 +406,51 @@ select * from user_log order by age desc limit 3, 3;
 ```
 db.<collection_name>.findOne({query}, {field})
 ```
+
+# 条件计数
+
+条件计数语句基于 `find()` 条件。查询命令如下所示：
+
+```bash
+db.<collection_name>.find({}).count();
+  # 或者
+db.getCollection('<collection_name>').find({}).count();
+```
+
+- 示例
+
+在做计数之前先查看一下数据库已有数据：
+
+```bash
+$ db.getCollection('user_log').find({});
+
+# 查询结果
+{ "_id" : ObjectId("..."), "name" : "MinGRn", "username" : "zhanssan" }
+{ "_id" : ObjectId("..."), "name" : "MinGRn", "username" : "zhanssan" }
+{ "_id" : ObjectId("..."), "name" : "MinGRn", "username" : "zhanssan", "age" : 20 }
+{ "_id" : ObjectId("..."), "name" : "MinGRn", "username" : "zhanssan", "age" : 22 }
+{ "_id" : ObjectId("..."), "name" : "zhangshilin" }
+{ "_id" : ObjectId("..."), "name" : "linda", "nationality" : "English", "sex" : "girl" }
+```
+
+现在我们基于这些数据进行查询计数，在之前先统计一下一共有多少条数据：
+
+```bash
+$ db.getCollection('user_log').count();
+  # 或者使用如下语句,因为没有条件两个语句都是可以的
+$ db.getCollection('user_log').find({}).count();
+
+# 查询结果
+6
+```
+
+这说明一共有六条数据，现在我们来使用条件统计一下 `name` 包含 `MinGRn` 的用户一共多少个：
+
+```bash
+$ db.getCollection('user_log').find({name: /MinGRn/}).count();
+
+# 查询结果如下：
+4
+```
+
+条件计数查询基本就这些。
