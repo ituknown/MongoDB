@@ -17,3 +17,6 @@
 * [删除操作](docs/operate/delete.md)
 
 ### 进阶篇
+
+* [索引](docs/upgrade/indexed.md)
+* [聚合查询](docs/upgrade/aggregation.md)
