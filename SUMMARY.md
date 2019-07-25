@@ -20,3 +20,4 @@
 
 * [索引](docs/upgrade/indexed.md)
 * [聚合查询](docs/upgrade/aggregation.md)
+* [MapReduce](docs/upgrade/MapReduce.md)
